@@ -1,0 +1,10 @@
+.link img{
+	background-color: #3b5998;
+	margin: 0 0 0 25px;
+	height: 64px;
+    width: 64px;
+    border-radius: 32px;
+	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+}
