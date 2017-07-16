@@ -11,7 +11,10 @@ import * as AWS from 'aws-sdk';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-	providers: [HeadComponent],
+	providers: [
+		HeadComponent,
+		ProductsComponent
+	],
 	animations: [
 		trigger('fadeInOut', [
 			transition(':enter', [   // :enter is alias to 'void => *'
@@ -30,9 +33,11 @@ export class AppComponent {
 	timerId: any;
 	timerDuration = 10000;
 	headVisible = true;
+	packagesVisible = false;
 	lambda: any = null;
+	packages: any = [];
 
-	constructor(private head: HeadComponent) {
+	constructor(private head: HeadComponent, private products: ProductsComponent) {
 	}
 	
 	ngOnInit() {
@@ -54,6 +59,11 @@ export class AppComponent {
 		if(timestamp === this.lastMouseMoveTimestamp){
 			return;
 		}
+		
+		if(this.packagesVisible){
+			this.headVisible = true;
+			return;
+		}
 
 		this.lastMouseMoveTimestamp = timestamp;
 		
@@ -61,6 +71,9 @@ export class AppComponent {
 		
 		let self = this;
 		this.timerId = setTimeout(() => {
+			if(this.packagesVisible){
+				return;
+			}
 			self.headVisible = false;
 		}, this.timerDuration);
 		
@@ -70,11 +83,17 @@ export class AppComponent {
 	}
 	
 	toggleProducts() {
+		if(this.packagesVisible){
+			this.packagesVisible = false;
+			return;
+		}
 		
 		this.lambda.invoke({
 			FunctionName: "products"
 		}, (err, data) => {
 			console.log('products', err, JSON.parse(data.Payload));
+			this.packages = JSON.parse(data.Payload).packages;
+			this.packagesVisible = true;
 		});
 	}
 }

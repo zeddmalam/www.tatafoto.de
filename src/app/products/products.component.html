@@ -1,3 +1,7 @@
-<p>
-  products works!
-</p>
+<div *ngIf="visible" [@fadeInOut] class="intro">You'll be proud of your photos! Together we'll create character, determine subject and find most suitable locations. During photo session you'll be provided with assistance on effective poses.</div>
+<ul class="packages" *ngIf="visible" [@fadeInOut]>
+  <li *ngFor="let package of packages">
+	<app-product [package]="package"></app-product>
+  </li>
+</ul>
+<div *ngIf="visible" [@fadeInOut] class="intro">Please note that If selected location is not free to visit, you should pay for it individually</div>

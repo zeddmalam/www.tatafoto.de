@@ -26,13 +26,8 @@ export class HeadComponent implements OnInit {
 
 	@Input('visible')
   set visible(value) {
-    this.setVisible(value);
+		this._visible = value;
   }
-	
-	setVisible (value){
-    this._visible = value;
-		
-	}
 	
 	ngOnInit() {
   }

@@ -1,0 +1,31 @@
+div.intro{
+	margin: 25px 25px 0 0;
+	padding: 15px;
+	background-color:#fff;
+	border-radius: 8px;
+	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+}
+
+.packages{
+	margin: 25px 0 0 0;
+	padding: 0;
+}
+
+.packages li
+{
+	display:inline-flex;
+	padding: 15px;
+	border-radius: 8px;
+	list-style-type: none;
+	width:210px;
+	height:444px;
+	background-color:#fff;
+	margin:0 10px 0 0;
+	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+}

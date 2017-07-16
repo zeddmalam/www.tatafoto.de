@@ -1,0 +1,46 @@
+.price{
+	float:right;
+	font-weight: 600;
+}
+
+.title{
+	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+	color: #3b5998;
+	font-size:30px;
+	font-weight: 900;
+}
+
+.wantItNow{
+	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+	color: #fff;
+	font-size:22px;
+	font-weight: 900;
+	padding: 12px;
+	margin: 25px 0 15px 0;
+	background-color: #3b5998;
+	border-radius: 8px;
+	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+}
+
+.wantItNow:hover{
+	color: #fff;
+	font-size:22px;
+	font-weight: 900;
+	padding: 12px;
+	margin: 25px 0 15px 0;
+	background-color: #3b5998;
+	border-radius: 8px;
+	-webkit-box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+}
+
+.package-info{
+	height:367px;
+}
+
+a{
+	text-decoration: none;
+}
