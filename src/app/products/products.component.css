@@ -1,5 +1,5 @@
 div.intro{
-	margin: 25px 25px 0 0;
+	margin: 25px 0px 0 0;
 	padding: 15px;
 	background-color:#fff;
 	border-radius: 8px;
@@ -7,6 +7,8 @@ div.intro{
 	-moz-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
 	box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+	opacity: 0.9;
+	max-width: 962px;
 }
 
 .packages{
@@ -20,12 +22,23 @@ div.intro{
 	padding: 15px;
 	border-radius: 8px;
 	list-style-type: none;
-	width:210px;
+	width:209px;
 	height:444px;
 	background-color:#fff;
-	margin:0 10px 0 0;
+	margin:0 10px 10px 0;
 	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
 	-moz-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
 	box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+	opacity: 0.9;
+}
+
+.packages li:hover{
+	opacity:1;
+}
+
+.packages li.order-form{
+	width:709px;
+	padding: 10px 15px 15px 15px;
+    height: 449px;
 }

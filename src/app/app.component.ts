@@ -35,6 +35,7 @@ export class AppComponent {
 	headVisible = true;
 	packagesVisible = false;
 	lambda: any = null;
+	sns: any = null;
 	packages: any = [];
 
 	constructor(private head: HeadComponent, private products: ProductsComponent) {
@@ -44,6 +45,7 @@ export class AppComponent {
 		AWS.config.update({region: 'eu-west-1'});
 		AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'eu-west-1:48a38394-ff07-4e72-b1e4-f930eda2708e'});
 		this.lambda = new AWS.Lambda();
+		this.sns = new AWS.SNS();
 
 		this.updateAutoHide()
   }
@@ -91,9 +93,38 @@ export class AppComponent {
 		this.lambda.invoke({
 			FunctionName: "products"
 		}, (err, data) => {
-			console.log('products', err, JSON.parse(data.Payload));
+			//console.log('products', err, JSON.parse(data.Payload));
 			this.packages = JSON.parse(data.Payload).packages;
 			this.packagesVisible = true;
 		});
+	}
+	
+	onEvent(event:any){
+		console.log('need to send form', event);
+		switch(event.type){
+			case 'SUBMIT_ORDER_FORM':
+				this.packagesVisible = false;
+				var payload = {
+					default:{
+						event: event
+					}
+				}
+
+				this.sns.publish({
+					Message: JSON.stringify(payload, null, 2),
+					Subject:"Message from www.TataFoto.de",
+					TargetArn: 'arn:aws:sns:eu-west-1:596757887524:www-tatafoto-de'
+				}, function (err, data) {
+					console.log('publishAlarm', err, data);
+					if (err) {
+						console.log(err.stack);
+						return;
+					}
+
+					console.log('push sent');
+					console.log(data);
+				});
+			break;
+		}
 	}
 }

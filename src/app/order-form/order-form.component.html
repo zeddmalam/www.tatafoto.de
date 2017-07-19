@@ -1,0 +1,26 @@
+<form #orderForm="ngForm" (ngSubmit)="onSubmit()">
+	<div class="order-form-body">
+		<p>
+			Please enter contact information below to complete your order.
+		</p>
+		<p>Email</p>
+		<p>
+			<input 
+				class="form"
+				pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" 
+				required
+				[(ngModel)]="form.email"
+				type="email" 
+				name="email">
+		</p>
+		<p>Phone number</p>
+		<p>
+			<input class="form" required type="phone" [(ngModel)]="form.phone" name="phone">
+		</p>
+		<p>Comments</p>
+		<p>
+			<textarea name="comments" [(ngModel)]="form.comments"></textarea>
+		</p>
+	</div>
+	<input type="submit" class="place-order" value="PLACE ORDER"/>
+</form>

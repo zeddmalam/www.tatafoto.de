@@ -22,7 +22,7 @@ export class HeadComponent implements OnInit {
 	subtitle = 'Photographer in Berlin';
 	email = 'tanya@tatafoto.de';
 	phone = '+49 152 59056226';
-	private _visible = false;
+	_visible = false;
 
 	@Input('visible')
   set visible(value) {

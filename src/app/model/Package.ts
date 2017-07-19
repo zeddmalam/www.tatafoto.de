@@ -1,6 +1,7 @@
-//import { Feature } from './Feature';
+import { Feature } from './Feature';
 
 export class Package {
+	id: string;
 	title: string;
 	price: number;
 	currency: string;
@@ -9,7 +10,8 @@ export class Package {
 	duration: string;
 	photoAmount: number;
 	photographerChoicePhotosAmount: number;
-//	features: Array<{ [id: string]: Feature; }>;
+	features: Array<Feature>;
 	notes: Array<string>;
+	visible: boolean;
 }
 
