@@ -1,25 +1,24 @@
-<form #orderForm="ngForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="orderFormGroup" (ngSubmit)="onSubmit()" novalidate>
 	<div class="order-form-body">
 		<p>
 			Please enter contact information below to complete your order.
 		</p>
-		<p>Email</p>
+		<p>Email<span *ngIf="orderFormGroup.controls.email.errors && orderFormGroup.controls.email.touched" class="error">Please specify corect email!</span></p>
 		<p>
 			<input 
+				#email
 				class="form"
-				pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" 
-				required
-				[(ngModel)]="form.email"
 				type="email" 
-				name="email">
+				formControlName="email">
 		</p>
-		<p>Phone number</p>
+		<p>Phone number<span *ngIf="orderFormGroup.controls.phone.errors && orderFormGroup.controls.phone.touched" class="error">Please specify correct phone number!</span></p>
 		<p>
-			<input class="form" required type="phone" [(ngModel)]="form.phone" name="phone">
+			<input #phone class="form" type="phone" formControlName="phone">
 		</p>
+		
 		<p>Comments</p>
 		<p>
-			<textarea name="comments" [(ngModel)]="form.comments"></textarea>
+			<textarea formControlName="comments" ></textarea>
 		</p>
 	</div>
 	<input type="submit" class="place-order" value="PLACE ORDER"/>

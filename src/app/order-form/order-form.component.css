@@ -49,3 +49,9 @@ textarea{
 .ng-valid{
 	border-color: green;
 }
+
+span.error{
+	float:right;
+	font-weight: 600;
+	color:red;
+}

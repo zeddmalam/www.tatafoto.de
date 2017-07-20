@@ -1,5 +1,7 @@
-<div *ngIf="visible" [@fadeInOut] class="intro">You'll be proud of your photos! Together we'll create character, determine subject and find most suitable locations. During photo session you'll be provided with assistance on effective poses.</div>
-<ul class="packages" *ngIf="visible" [@fadeInOut]>
+<div *ngIf="_visible" [@fadeInOut] class="intro">
+	<p>You'll be proud of your photos! Together we'll create character, determine subject and find most suitable locations. During photo session you'll be provided with assistance on effective poses.</p>
+</div>
+<ul class="packages" *ngIf="_visible" [@fadeInOut]>
 	<ng-container *ngFor="let package of packages">
 	  <li *ngIf="package.visible !== false" [@fadeInOut2]>
 		<app-product [package]="package" (emitter)="onEvent($event)"></app-product>
@@ -9,4 +11,4 @@
 		<app-order-form style="width:100%;" (emitter)="onEvent($event)"></app-order-form>
 	</li>
 </ul>
-<div *ngIf="visible" [@fadeInOut] class="intro">Please note that If selected location is not free to visit, you should pay for it individually</div>
+<div *ngIf="_visible" [@fadeInOut] class="intro">Please note that If selected location is not free to visit, you should pay for it individually</div>

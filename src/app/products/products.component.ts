@@ -29,9 +29,14 @@ import { OrderFormComponent } from '../order-form/order-form.component';
 })
 export class ProductsComponent implements OnInit {
 	@Input('packages') packages: any;
-	@Input('visible') visible: boolean;
+	_visible: boolean;
 	@Output('emitter') emitter:EventEmitter<any> = new EventEmitter<any>();
-
+	
+	@Input('visible') set visible(value){
+		this._visible = value;
+		this.formVisible = false;
+	}
+	
 	selectedPackage: Package = null;
 	formVisible: boolean = false;
 	
@@ -60,6 +65,7 @@ export class ProductsComponent implements OnInit {
 				this.formVisible = false;
 				break;
 			case 'SUBMIT_ORDER_FORM':
+				this.formVisible = false;
 				event.package = this.selectedPackage;
 				this.emitter.emit(event);
 				break;

@@ -2,6 +2,7 @@
 
 import { Component, style, state, animate, transition, trigger } from '@angular/core';
 import { HeadComponent } from './head/head.component';
+import { AlertComponent } from './alert/alert.component';
 import { ProductsComponent } from './products/products.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import * as moment from 'moment';
@@ -13,7 +14,8 @@ import * as AWS from 'aws-sdk';
   styleUrls: ['./app.component.css'],
 	providers: [
 		HeadComponent,
-		ProductsComponent
+		ProductsComponent,
+		AlertComponent
 	],
 	animations: [
 		trigger('fadeInOut', [
@@ -36,6 +38,7 @@ export class AppComponent {
 	packagesVisible = false;
 	lambda: any = null;
 	sns: any = null;
+	alertMessage = '';
 	packages: any = [];
 
 	constructor(private head: HeadComponent, private products: ProductsComponent) {
@@ -73,7 +76,7 @@ export class AppComponent {
 		
 		let self = this;
 		this.timerId = setTimeout(() => {
-			if(this.packagesVisible){
+			if(self.packagesVisible){
 				return;
 			}
 			self.headVisible = false;
@@ -103,26 +106,28 @@ export class AppComponent {
 		console.log('need to send form', event);
 		switch(event.type){
 			case 'SUBMIT_ORDER_FORM':
-				this.packagesVisible = false;
 				var payload = {
 					default:{
 						event: event
 					}
 				}
+				
+				var self = this;
 
 				this.sns.publish({
 					Message: JSON.stringify(payload, null, 2),
 					Subject:"Message from www.TataFoto.de",
 					TargetArn: 'arn:aws:sns:eu-west-1:596757887524:www-tatafoto-de'
 				}, function (err, data) {
+					self.packagesVisible = false;
 					console.log('publishAlarm', err, data);
 					if (err) {
 						console.log(err.stack);
-						return;
+						self.alertMessage = 'Your order has not been sent. Please try again later or contact us directly! Thank you for your understanding!' ;
+					} else {
+						self.alertMessage = 'Your order has been sent! We\'ll connect with you shortly' ;
 					}
 
-					console.log('push sent');
-					console.log(data);
 				});
 			break;
 		}
