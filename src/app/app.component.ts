@@ -35,8 +35,9 @@ export class AppComponent {
 	packages: any = [];
 
 	constructor(private head: HeadComponent, private router: Router, private translate: TranslateService) {
+		translate.addLangs(["en", "ru", "de"]);
 		translate.setDefaultLang('ru');
-		translate.use('ru');
+		translate.use(translate.getBrowserLang());
   	}
 	
 	ngOnInit() {
@@ -47,7 +48,11 @@ export class AppComponent {
 		event.preventDefault();
 		this.updateAutoHide()
 	}
-	
+
+	onLangChange(lang: string){
+		this.translate.use(lang);
+	}
+
 	updateAutoHide() {
 		let timestamp = moment().unix();
 		

@@ -15,8 +15,6 @@ export class ProductComponent implements OnInit {
 	formVisible = false;
 
 	constructor(private translate: TranslateService) {
-		translate.setDefaultLang('ru');
-		translate.use('ru');
 	}
 
 	ngOnInit() {

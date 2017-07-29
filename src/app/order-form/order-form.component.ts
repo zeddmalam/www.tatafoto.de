@@ -19,8 +19,8 @@ export class OrderFormComponent implements OnInit {
 	orderFormGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private renderer: Renderer, private translate: TranslateService) {
-		translate.setDefaultLang('ru');
-		translate.use('ru');
+		//translate.setDefaultLang('ru');
+		//translate.use('ru');
   }
 
   ngOnInit() {

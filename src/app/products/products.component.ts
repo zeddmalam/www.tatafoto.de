@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, style, state, animate, transition, trigger, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, style, state, animate, transition, trigger, Output, EventEmitter } from '@angular/core';
 import { Package }  from '../model/Package';
 import { AlertComponent } from '../alert/alert.component';
 import { OrderFormComponent } from '../order-form/order-form.component';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import * as AWS from 'aws-sdk';
 
 @Component({
@@ -32,7 +32,7 @@ import * as AWS from 'aws-sdk';
 		])
 	]
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
 	@Input('packages') packages: any;
 	_visible: boolean;
 	@Output('emitter') emitter:EventEmitter<any> = new EventEmitter<any>();
@@ -49,28 +49,44 @@ export class ProductsComponent implements OnInit {
 	formVisible: boolean = false;
 	orderSentVisible: boolean = false;
 	placeOrderStatus: string;
+	onLangChangeSubscription: any;
 	
 	constructor(private translate: TranslateService) {
-		translate.setDefaultLang('ru');
-		translate.use('ru');
+	}
+
+
+
+	ngOnInit() {
+		AWS.config.update({region: 'eu-west-1'});
+		AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'eu-west-1:48a38394-ff07-4e72-b1e4-f930eda2708e'});
+		this.lambda = new AWS.Lambda();
+		this.sns = new AWS.SNS();
+		this.updateProducts();
 
 		let self = this;
 		this.translate.get('PRODUCTS.COMPONENT.SENDING_DATA').subscribe((res: string) => {
 			self.placeOrderStatus = res;
 		});
+		console.log('subscribed');
+		this.onLangChangeSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+			self.updateProducts();
+		});
 	}
 
-  ngOnInit() {
-		AWS.config.update({region: 'eu-west-1'});
-		AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'eu-west-1:48a38394-ff07-4e72-b1e4-f930eda2708e'});
-		this.lambda = new AWS.Lambda();
-		this.sns = new AWS.SNS();
+	ngOnDestroy(): void {
+		console.log('UNsubscribed');
+		this.onLangChangeSubscription.unsubscribe();
+	}
+
+	updateProducts() {
+		let self = this;
 		this.lambda.invoke({
-			FunctionName: "products"
+			FunctionName: "products",
+			Payload: JSON.stringify({locale: this.translate.currentLang})
 		}, (err, data) => {
-			this.packages = JSON.parse(data.Payload).packages;
+			self.packages = JSON.parse(data.Payload).packages;
 		});
-  }
+	}
 	
 	onEvent(event: any){
 		switch(event.type){
@@ -78,7 +94,6 @@ export class ProductsComponent implements OnInit {
 				this.packages.forEach(pack => {
 					if(pack.id !== event.package.id){
 						pack.visible = false;
-
 					}
 				});
 				this.formVisible = true;

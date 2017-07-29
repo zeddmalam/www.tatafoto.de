@@ -1,0 +1,34 @@
+{
+	"HEAD": {
+		"TITLE": "Tanya Bukhanets",
+		"SUBTITLE": "Photographer in Berlin",
+		"EMAIL": "tanya@tatafoto.de",
+		"PHONE": "+49 152 59056226"
+	},
+	"ORDER_FORM": {
+		"TITLE": "Please enter contact information below to complete your order.",
+		"EMAIL": "Email",
+		"EMAIL_ERROR": "Please specify corect email!",
+		"PHONE_NUMBER": "Phone number",
+		"PHONE_NUMBER_ERROR": "Please specify correct phone number!",
+		"COMMENTS": "Comments",
+		"PLACE_ORDER": "PLACE ORDER"
+	},
+	"PRODUCTS": {
+		"INTRO": "You'll be proud of your photos! Together we'll create character, determine subject and find most suitable locations. During photo session you'll be provided with assistance on effective poses.",
+		"NOTES": "<li>Please note that If selected location is not free to visit, you should pay for it individually</li><li>If location is outside of Berlin, tickets are not included in package.</li>",
+		"CLOSE": "CLOSE",
+		"COMPONENT": {
+			"SENDING_DATA": "Sending data...",
+			"SENDING_DATA_SUCCEED": "Your order has been sent! We'll connect with you shortly",
+			"SENDING_DATA_FAILED": "Your order has not been sent. Please try again later or contact us directly! Thank you for your understanding!"
+		}
+	},
+	"PRODUCT": {
+		"DESCRIPTION": "During <strong>{{package.duration}}</strong> you will get <strong>{{package.photoAmount}}</strong> photos ({{yourChoice}} by photographer choice)",
+		"FREE_GIFTS": "Free gifts for you:",
+		"FEATURES": "Additional features",
+		"WANT_IT_NOW": "I WANT IT NOW!",
+		"CANCEL": "Cancel"
+	}
+}
