@@ -29,7 +29,6 @@ export class AlertComponent implements OnInit {
 
 	@Input('message')
 	set message(val: string) {
-		console.log('message changed', val);
 		if('' === val){
 			this.visible = false;
 			return;

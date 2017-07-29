@@ -18,10 +18,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 	]
 })
 export class HeadComponent implements OnInit {
-  title = 'Tanya Bukhanets';
-	subtitle = 'Photographer in Berlin';
-	email = 'tanya@tatafoto.de';
-	phone = '+49 152 59056226';
 	_visible = false;
 
 	@Input('visible')

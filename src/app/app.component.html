@@ -1,13 +1,16 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="width:100%; height:100vh; display:block;" (mousemove)="mouseMove($event)">
 	<div style="display:block; width:400px; float:left;">
-		<app-head [visible]="headVisible || packagesVisible"></app-head><br/><br/>
-		<a href="http://vk.com/foto.berlin" class="link" target="_blank"><img src="assets/images/vk_icon.png" *ngIf="headVisible || packagesVisible" [@fadeInOut]></a>
-		<a href="https://www.facebook.com/profile.php?id=100002674856441" class="link" target="_blank"><img src="assets/images/fb_icon.png" *ngIf="headVisible || packagesVisible" [@fadeInOut]></a>
-		<a href="javascript:;" class="link{{packagesVisible? ' active' : ''}}" (click)="toggleProducts()"><img src="assets/images/euro_icon.png" *ngIf="headVisible || packagesVisible" [@fadeInOut]></a>
+		<!--nav><a routerLink="/ru" class='lang'>RU</a>|<a routerLink="/de" >DE</a></nav-->
+		<app-head [visible]="headVisible || router.url !== '/'"></app-head><br/><br/>
+		<nav>
+			<a href="http://vk.com/foto.berlin" class="link" target="_blank"><img src="assets/images/vk_icon.png" *ngIf="headVisible || router.url !== '/'" [@fadeInOut]></a>
+			<a href="https://www.facebook.com/profile.php?id=100002674856441" class="link" target="_blank"><img src="assets/images/fb_icon.png" *ngIf="headVisible || router.url !== '/'" [@fadeInOut]></a>
+			<a routerLink="/" routerLinkActive="active" class="link" *ngIf="router.url !== '/'"><img src="assets/images/euro_icon.png" *ngIf="headVisible || router.url !== '/'" [@fadeInOut]></a>
+			<a routerLink="/products" routerLinkActive="" class="link" *ngIf="router.url === '/'"><img src="assets/images/euro_icon.png" *ngIf="headVisible || router.url !== '/'" [@fadeInOut]></a>
+		</nav>
 	</div>
 	<div style="display:block; float:left;">
-		<app-products  [visible]="packagesVisible" [packages]="packages" (emitter)="onEvent($event)"></app-products>
+		<router-outlet></router-outlet>
 	</div>
 </div>
-<app-alert [message]="alertMessage"></app-alert>

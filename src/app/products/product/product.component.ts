@@ -13,10 +13,10 @@ export class ProductComponent implements OnInit {
 	additionalPrice = 0;
 	formVisible = false;
 
-  constructor() { }
+	constructor() { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
 	updatePrice() {
 		this.additionalPrice++;
@@ -32,15 +32,15 @@ export class ProductComponent implements OnInit {
 		this.formVisible = true;
 		this.emitter.emit({
 			type:'SHOW_FORM',
-      package: this.package
-    });
+			package: this.package
+		});
 	}
 	
 	cancelClick(){
 		this.formVisible = false;
 		this.emitter.emit({
 			type:'CANCEL_FORM',
-      package: this.package
-    });
+			package: this.package
+		});
 	}
 }

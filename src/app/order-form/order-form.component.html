@@ -1,9 +1,10 @@
 <form [formGroup]="orderFormGroup" (ngSubmit)="onSubmit()" novalidate>
 	<div class="order-form-body">
+		<p i18n="orderTitle|order form title@@orderTitle">Please enter contact information below to complete your order.</p>
 		<p>
-			Please enter contact information below to complete your order.
+			<span i18n="orderEmail|order form email@@orderEmail">Email</span>
+			<span *ngIf="orderFormGroup.controls.email.errors && orderFormGroup.controls.email.touched" class="error" i18n="orderEmailError|order form email error message@@orderEmailError">Please specify corect email!</span>
 		</p>
-		<p>Email<span *ngIf="orderFormGroup.controls.email.errors && orderFormGroup.controls.email.touched" class="error">Please specify corect email!</span></p>
 		<p>
 			<input 
 				#email
@@ -11,12 +12,14 @@
 				type="email" 
 				formControlName="email">
 		</p>
-		<p>Phone number<span *ngIf="orderFormGroup.controls.phone.errors && orderFormGroup.controls.phone.touched" class="error">Please specify correct phone number!</span></p>
+		<p>
+			<span i18n="orderPhone|order form phone number@@orderPhone">Phone number</span>
+			<span *ngIf="orderFormGroup.controls.phone.errors && orderFormGroup.controls.phone.touched" class="error" i18n="orderPhoneError|order form phone number error message@@orderPhoneError">Please specify correct phone number!</span></p>
 		<p>
 			<input #phone class="form" type="phone" formControlName="phone">
 		</p>
 		
-		<p>Comments</p>
+		<p i18n="orderComments|order form comments@@orderComments">Comments</p>
 		<p>
 			<textarea formControlName="comments" ></textarea>
 		</p>

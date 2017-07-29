@@ -42,3 +42,32 @@ div.intro{
 	padding: 10px 15px 15px 15px;
     height: 449px;
 }
+
+.order-form-body{
+	height:357px;
+}
+
+.place-order{
+	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+	color: #fff;
+	font-size:22px;
+	font-weight: 900;
+	padding: 12px;
+	margin: 25px 0 15px 0;
+	background-color: #3b5998;
+	border-radius: 8px;
+	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	text-align: center;
+	border: 0;
+	cursor: pointer;
+	height:50px;
+	text-decoration: none;
+}
+
+.place-order:hover{
+	-webkit-box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+}
