@@ -2,20 +2,18 @@
 	<div class="title">
 		{{package.title}} <span class="price">{{package.currency}}{{package.price + additionalPrice}}</span>
 	</div>
-	<p>
-		During <strong>{{package.duration}}</strong> you will get <strong>{{package.photoAmount}}</strong> photos ({{package.photoAmount - package.photographerChoicePhotosAmount}} by your choice + {{package.photographerChoicePhotosAmount}} by photographer choice)
-	</p>
-	<p><strong>Free gifts for you:</strong></p>
+	<p [innerHTML]="'PRODUCT.DESCRIPTION' | translate:{package: package, yourChoice: package.photoAmount - package.photographerChoicePhotosAmount}"></p>
+	<p><strong>{{ 'PRODUCT.FREE_GIFTS' | translate }}</strong></p>
 
 	<font *ngFor="let feature of package.features; let isLast=last; let i = index">
 		<div *ngIf="feature.price === 0"><input type="checkbox"  [(ngModel)]="feature.checked">{{feature.title}}</div>
 	</font>
 
-	<p><strong>Additional features</strong></p>
+	<p><strong>{{ 'PRODUCT.FEATURES' | translate }}</strong></p>
 
 	<font *ngFor="let feature of package.features">
 		<div *ngIf="feature.price"><input type="checkbox" [(ngModel)]="feature.checked" (change)="updatePrice()">{{feature.title}} <span class="price">{{package.currency}}{{feature.price}}</span></div>
 	</font>
 </div>
-<a href="javascript:;" (click)="wantItNowClick()" *ngIf="!formVisible"><p class="wantItNow">I WANT IT NOW!</p></a>
-<a href="javascript:;" (click)="cancelClick()" *ngIf="formVisible"><p class="cancel">Cancel</p></a>
+<a href="javascript:;" (click)="wantItNowClick()" *ngIf="!formVisible"><p class="wantItNow">{{ 'PRODUCT.WANT_IT_NOW' | translate }}</p></a>
+<a href="javascript:;" (click)="cancelClick()" *ngIf="formVisible"><p class="cancel">{{ 'PRODUCT.CANCEL' | translate }}</p></a>

@@ -1,4 +1,4 @@
-<h1 *ngIf="_visible" [@fadeInOut] class="app-head-title"    i18n="title|Photographers name@@title">Tanya Bukhanets</h1>
-<h2 *ngIf="_visible" [@fadeInOut] class="app-head-subtitle" i18n="subtitle|Photographer in Berlin@@subtitle">Photographer in Berlin</h2><br/><br/>
-<h2 *ngIf="_visible" [@fadeInOut] class="app-head-subtitle" i18n="email|email@@email">tanya@tatafoto.de</h2>
-<h2 *ngIf="_visible" [@fadeInOut] class="app-head-subtitle" i18n="phone|phone@@phone">+49 152 59056226</h2>
+<h1 *ngIf="_visible" [@fadeInOut] class="app-head-title">{{ 'HEAD.TITLE' | translate }}</h1>
+<h2 *ngIf="_visible" [@fadeInOut] class="app-head-subtitle">{{ 'HEAD.SUBTITLE' | translate }}</h2><br/><br/>
+<h2 *ngIf="_visible" [@fadeInOut] class="app-head-subtitle">{{ 'HEAD.EMAIL' | translate }}</h2>
+<h2 *ngIf="_visible" [@fadeInOut] class="app-head-subtitle">{{ 'HEAD.PHONE' | translate }}</h2>

@@ -7,6 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeadComponent } from './head/head.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductsModule }     from './products/products.module';
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+
+export function createTranslateLoader(http: HttpClient) {
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -19,8 +26,15 @@ import { ProductsModule }     from './products/products.module';
 		BrowserAnimationsModule,
 		FormsModule,
 		ReactiveFormsModule,
-		ProductsModule
-  ],
+    ProductsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    })],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import {Package} from '../../model/Package';
 
 @Component({
@@ -13,7 +14,10 @@ export class ProductComponent implements OnInit {
 	additionalPrice = 0;
 	formVisible = false;
 
-	constructor() { }
+	constructor(private translate: TranslateService) {
+		translate.setDefaultLang('ru');
+		translate.use('ru');
+	}
 
 	ngOnInit() {
 	}

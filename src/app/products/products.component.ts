@@ -2,6 +2,7 @@ import { Component, OnInit, Input, style, state, animate, transition, trigger, O
 import { Package }  from '../model/Package';
 import { AlertComponent } from '../alert/alert.component';
 import { OrderFormComponent } from '../order-form/order-form.component';
+import { TranslateService } from '@ngx-translate/core';
 import * as AWS from 'aws-sdk';
 
 @Component({
@@ -47,9 +48,17 @@ export class ProductsComponent implements OnInit {
 	selectedPackage: Package = null;
 	formVisible: boolean = false;
 	orderSentVisible: boolean = false;
-	placeOrderStatus: string = 'Sending data...';
+	placeOrderStatus: string;
 	
-  constructor() { }
+	constructor(private translate: TranslateService) {
+		translate.setDefaultLang('ru');
+		translate.use('ru');
+
+		let self = this;
+		this.translate.get('PRODUCTS.COMPONENT.SENDING_DATA').subscribe((res: string) => {
+			self.placeOrderStatus = res;
+		});
+	}
 
   ngOnInit() {
 		AWS.config.update({region: 'eu-west-1'});
@@ -99,12 +108,15 @@ export class ProductsComponent implements OnInit {
 					Subject:"Message from www.TataFoto.de",
 					TargetArn: 'arn:aws:sns:eu-west-1:596757887524:www-tatafoto-de'
 				}, function (err, data) {
-					console.log('publishAlarm', err, data);
 					if (err) {
 						console.log(err.stack);
-						self.placeOrderStatus = 'Your order has not been sent. Please try again later or contact us directly! Thank you for your understanding!' ;
+						self.translate.get('PRODUCTS.COMPONENT.SENDING_DATA_FAILED').subscribe((res: string) => {
+							self.placeOrderStatus = res;
+						});
 					} else {
-						self.placeOrderStatus = 'Your order has been sent! We\'ll connect with you shortly' ;
+						self.translate.get('PRODUCTS.COMPONENT.SENDING_DATA_SUCCEED').subscribe((res: string) => {
+							self.placeOrderStatus = res;
+						});
 					}
 
 				});

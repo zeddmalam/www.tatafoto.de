@@ -8,13 +8,15 @@
 		<app-order-form style="width:100%;" (emitter)="onEvent($event)"></app-order-form>
 	</li>
 	<li *ngIf="orderSentVisible" class="order-form" [@fadeInOut2]>
-		<div class="order-form-body">
-			<p>{{placeOrderStatus}}</p>
+		<div>
+			<div class="order-form-body">
+				<p>{{placeOrderStatus}}</p>
+			</div>
+			<a routerLink="/" class="place-order">{{ 'PRODUCTS.CLOSE' | translate }}</a>
 		</div>
-		<a routerLink="/" class="place-order">CLOSE</a>
 	</li>
 </ul>
 <div [@fadeInOut] class="intro">
-	<p>You'll be proud of your photos! Together we'll create character, determine subject and find most suitable locations. During photo session you'll be provided with assistance on effective poses.</p>
+	<p>{{ 'PRODUCTS.INTRO' | translate }}</p>
 </div>
-<div [@fadeInOut] class="intro"><ul><li>Please note that If selected location is not free to visit, you should pay for it individually</li></ul></div>
+<div [@fadeInOut] class="intro"><ul [innerHTML]="'PRODUCTS.NOTES' | translate"></ul></div>

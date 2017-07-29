@@ -4,6 +4,7 @@ import { Component, style, state, animate, transition, trigger } from '@angular/
 import { HeadComponent } from './head/head.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router }  from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 
 @Component({
@@ -33,14 +34,16 @@ export class AppComponent {
 	packagesVisible = false;
 	packages: any = [];
 
-	constructor(private head: HeadComponent, private router: Router) {
-	}
+	constructor(private head: HeadComponent, private router: Router, private translate: TranslateService) {
+		translate.setDefaultLang('ru');
+		translate.use('ru');
+  	}
 	
 	ngOnInit() {
 		this.updateAutoHide()
 	}
 
-	mouseMove(event) {
+	onEvent(event) {
 		event.preventDefault();
 		this.updateAutoHide()
 	}

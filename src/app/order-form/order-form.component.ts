@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, Renderer, ElementRef } from '@angular/core';
 import { OrderForm } from '../model/OrderForm';
 import { NgForm, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-order-form',
@@ -17,18 +18,18 @@ export class OrderFormComponent implements OnInit {
 	//formBuilder: FormBuilder;
 	orderFormGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private renderer: Renderer) { }
+  constructor(private formBuilder: FormBuilder, private renderer: Renderer, private translate: TranslateService) {
+		translate.setDefaultLang('ru');
+		translate.use('ru');
+  }
 
   ngOnInit() {
 		this.orderFormGroup = this.formBuilder.group({
 			email:['', [
-				Validators.required/*,
-				Validators.pattern("^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$")*/
+				Validators.required
 			]],
 			phone:['', [
-				Validators.required/*,
-				Validators.pattern("[+]?[0-9\-\s]+"),
-				Validators.minLength(10)*/
+				Validators.required
 			]],
 			comments:'',
 		});

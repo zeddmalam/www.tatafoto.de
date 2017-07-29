@@ -1,28 +1,24 @@
 <form [formGroup]="orderFormGroup" (ngSubmit)="onSubmit()" novalidate>
 	<div class="order-form-body">
-		<p i18n="orderTitle|order form title@@orderTitle">Please enter contact information below to complete your order.</p>
+		<p>{{ 'ORDER_FORM.TITLE' | translate }}</p>
 		<p>
-			<span i18n="orderEmail|order form email@@orderEmail">Email</span>
-			<span *ngIf="orderFormGroup.controls.email.errors && orderFormGroup.controls.email.touched" class="error" i18n="orderEmailError|order form email error message@@orderEmailError">Please specify corect email!</span>
+			<span >{{ 'ORDER_FORM.EMAIL' | translate }}</span>
+			<span *ngIf="orderFormGroup.controls.email.errors && orderFormGroup.controls.email.touched" class="error" >{{ 'ORDER_FORM.EMAIL_ERROR' | translate }}</span>
 		</p>
 		<p>
-			<input 
-				#email
-				class="form"
-				type="email" 
-				formControlName="email">
+			<input #email class="form" type="email" formControlName="email">
 		</p>
 		<p>
-			<span i18n="orderPhone|order form phone number@@orderPhone">Phone number</span>
-			<span *ngIf="orderFormGroup.controls.phone.errors && orderFormGroup.controls.phone.touched" class="error" i18n="orderPhoneError|order form phone number error message@@orderPhoneError">Please specify correct phone number!</span></p>
+			<span>{{ 'ORDER_FORM.PHONE_NUMBER' | translate }}</span>
+			<span *ngIf="orderFormGroup.controls.phone.errors && orderFormGroup.controls.phone.touched" class="error">{{ 'ORDER_FORM.PHONE_NUMBER_ERROR' | translate }}</span></p>
 		<p>
 			<input #phone class="form" type="phone" formControlName="phone">
 		</p>
 		
-		<p i18n="orderComments|order form comments@@orderComments">Comments</p>
+		<p i18n="orderComments|order form comments@@orderComments">{{ 'ORDER_FORM.COMMENTS' | translate }}</p>
 		<p>
 			<textarea formControlName="comments" ></textarea>
 		</p>
 	</div>
-	<input type="submit" class="place-order" value="PLACE ORDER"/>
+	<input type="submit" class="place-order" value="{{ 'ORDER_FORM.PLACE_ORDER' | translate }}"/>
 </form>

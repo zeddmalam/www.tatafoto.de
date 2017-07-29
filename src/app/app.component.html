@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="width:100%; height:100vh; display:block;" (mousemove)="mouseMove($event)">
+<div style="width:100%; height:100vh; display:block;" (mousemove)="onEvent($event)" (click)="onEvent($event)">
 	<div style="display:block; width:400px; float:left;">
 		<!--nav><a routerLink="/ru" class='lang'>RU</a>|<a routerLink="/de" >DE</a></nav-->
 		<app-head [visible]="headVisible || router.url !== '/'"></app-head><br/><br/>
