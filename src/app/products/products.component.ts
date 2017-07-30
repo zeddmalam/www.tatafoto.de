@@ -3,6 +3,7 @@ import { Package }  from '../model/Package';
 import { AlertComponent } from '../alert/alert.component';
 import { OrderFormComponent } from '../order-form/order-form.component';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { Router }  from '@angular/router';
 import * as AWS from 'aws-sdk';
 
 @Component({
@@ -51,7 +52,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 	placeOrderStatus: string;
 	onLangChangeSubscription: any;
 	
-	constructor(private translate: TranslateService) {
+	constructor(private router: Router, private translate: TranslateService) {
 	}
 
 
@@ -69,6 +70,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
 		});
 		console.log('subscribed');
 		this.onLangChangeSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+			if(this.router.url !== '/products'){
+				return;
+			}
 			self.updateProducts();
 		});
 	}
