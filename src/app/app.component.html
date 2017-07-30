@@ -6,8 +6,10 @@
 		<nav>
 			<a href="http://vk.com/foto.berlin" class="link" target="_blank"><img src="assets/images/vk_icon.png" *ngIf="headVisible || router.url !== '/'" [@fadeInOut]></a>
 			<a href="https://www.facebook.com/profile.php?id=100002674856441" class="link" target="_blank"><img src="assets/images/fb_icon.png" *ngIf="headVisible || router.url !== '/'" [@fadeInOut]></a>
-			<a routerLink="/" routerLinkActive="active" class="link" *ngIf="router.url !== '/'"><img src="assets/images/euro_icon.png" *ngIf="headVisible || router.url !== '/'" [@fadeInOut]></a>
-			<a routerLink="/products" routerLinkActive="" class="link" *ngIf="router.url === '/'"><img src="assets/images/euro_icon.png" *ngIf="headVisible || router.url !== '/'" [@fadeInOut]></a>
+			<a routerLink="/" routerLinkActive="active" class="link" *ngIf="router.url === '/products'"><img src="assets/images/euro_icon.png" *ngIf="headVisible || router.url !== '/'" [@fadeInOut]></a>
+			<a routerLink="/products" routerLinkActive="" class="link" *ngIf="router.url !== '/products'"><img src="assets/images/euro_icon.png" *ngIf="headVisible || router.url !== '/'" [@fadeInOut]></a>
+			<!--a routerLink="/" routerLinkActive="active" class="link" *ngIf="router.url === '/catalog'"><img src="assets/images/catalog_icon.png" *ngIf="headVisible || router.url !== '/'" [@fadeInOut]></a>
+			<a routerLink="/catalog" routerLinkActive="" class="link" *ngIf="router.url !== '/catalog'"><img src="assets/images/catalog_icon.png" *ngIf="headVisible || router.url !== '/'" [@fadeInOut]></a-->
 		</nav>
 	</div>
 	<div style="display:block; float:left;">
