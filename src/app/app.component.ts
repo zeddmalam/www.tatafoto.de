@@ -1,9 +1,9 @@
 /// <reference types="aws-sdk" /> 
 
-import { Component, style, state, animate, transition, trigger } from '@angular/core';
+import { Component, style, state, animate, transition, trigger, OnDestroy } from '@angular/core';
 import { HeadComponent } from './head/head.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Router }  from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 
@@ -26,13 +26,15 @@ import * as moment from 'moment';
 		])
 	]
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy{
 	lastMouseMoveTimestamp = 0;
 	timerId: any;
 	timerDuration = 10000;
 	headVisible = true;
 	packagesVisible = false;
 	packages: any = [];
+	url: string;
+	urlChangeSubscribtion: any;
 
 	constructor(private head: HeadComponent, private router: Router, private translate: TranslateService) {
 		translate.addLangs(["en", "ru", "de"]);
@@ -42,6 +44,15 @@ export class AppComponent {
 	
 	ngOnInit() {
 		this.updateAutoHide()
+		this.urlChangeSubscribtion = this.router.events.subscribe((event) => {
+			if (event instanceof NavigationEnd) {
+				this.url = this.router.url;
+			}
+		});
+	}
+
+	ngOnDestroy(): void {
+		this.urlChangeSubscribtion.unsubscribe();
 	}
 
 	onEvent(event) {

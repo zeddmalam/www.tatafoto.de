@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeadComponent } from './head/head.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductsModule }     from './products/products.module';
+import { AlbumsModule }     from './albums/albums.module';
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -28,6 +29,7 @@ export function createTranslateLoader(http: HttpClient) {
 		FormsModule,
 		ReactiveFormsModule,
     ProductsModule,
+    AlbumsModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
