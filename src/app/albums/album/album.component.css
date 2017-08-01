@@ -1,0 +1,49 @@
+div.thumbnail{
+	margin: 25px;
+	border-radius: 150px;
+	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+	display: block;
+	width: 300px;
+	height:300px;
+}
+
+div.thumbnail:hover{
+	-webkit-box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+}
+
+.link{
+	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+	font-size: 48px;
+	font-weight: 900;
+	color: #fff;
+	background-color: #3b5998;
+	text-align: center;
+	vertical-align: middle;
+	height: 64px;
+	width: 64px;
+	display: block;
+	float:left;
+	margin: 0 24px 0 0;
+	border-radius: 32px;
+	text-decoration: none;
+	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+}
+
+.link:hover{
+	-webkit-box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+}
+
+.navigation{
+	margin: 24px;
+	position:absolute;
+	bottom: 0;
+}

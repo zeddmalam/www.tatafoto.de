@@ -4,10 +4,11 @@ import { AlbumsComponent } from './albums.component';
 import { AlbumComponent } from './album/album.component';
 import { AlbumsRoutingModule } from './albums-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { createTranslateLoader } from "app/app.module";
+import { Btoa } from "app/pipe/btoa.pipe";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   imports: [
@@ -24,7 +25,11 @@ import { createTranslateLoader } from "app/app.module";
       }
     })
   ],
-  declarations: [AlbumsComponent, AlbumComponent],
+  declarations: [
+    AlbumsComponent, 
+    AlbumComponent,
+    Btoa
+  ],
   bootstrap: [AlbumsComponent]
 })
 export class AlbumsModule { }

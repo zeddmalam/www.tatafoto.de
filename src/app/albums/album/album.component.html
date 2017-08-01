@@ -1,3 +1,14 @@
-<p>
-  album works!
-</p>
+<div class="thumbnail" *ngIf="album" [ngStyle]="{'background': 'url(' + album.properties.thumbnail + ') center'}" [@fadeInOut]>
+	<a class="link" (click)="goBack()" href="javascript:;">&#8682;</a>
+</div>
+<span>
+	<a href="javascript:;">I WANT SIMILAR!</a>
+	<a href="javascript:;">SHARE</a>
+	<a href="javascript:;">LIKE</a>
+	<a href="javascript:;">SOMETHING ELSE</a>
+	
+<span>
+<span class="navigation">
+	<a class="link" (click)="prev()" href="javascript:;">&#8678;</a>
+	<a class="link" (click)="next()" href="javascript:;">&#8680;</a>
+</span>

@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="width:100%; height:100vh; display:block;" (mousemove)="onEvent($event)" (click)="onEvent($event)">
-	<div style="display:block; width:400px; float:left;">
+	<div *ngIf="['/', '/products', '/albums'].indexOf(url) >= 0" style="display:block; width:400px; float:left;">
 		<nav class="lang" *ngIf="headVisible || url !== '/'" [@fadeInOut]><a href="#" (click)="onLangChange('ru')">RU</a>|<a href="#" (click)="onLangChange('de')">DE</a>|<a href="#" (click)="onLangChange('en')">EN</a></nav>
 		<app-head [visible]="headVisible || url !== '/'"></app-head><br/><br/>
 		<nav>

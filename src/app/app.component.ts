@@ -6,6 +6,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
+import { AwsService } from "app/service/aws.service";
+declare var jquery: any;
+declare var $ :any;
 
 @Component({
   selector: 'app-root',
@@ -36,7 +39,7 @@ export class AppComponent implements OnDestroy{
 	url: string;
 	urlChangeSubscribtion: any;
 
-	constructor(private head: HeadComponent, private router: Router, private translate: TranslateService) {
+	constructor(private head: HeadComponent, private router: Router, private translate: TranslateService, private awsService: AwsService) {
 		translate.addLangs(["en", "ru", "de"]);
 		translate.setDefaultLang('ru');
 		translate.use(translate.getBrowserLang());

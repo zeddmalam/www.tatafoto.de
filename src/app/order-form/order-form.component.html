@@ -15,10 +15,10 @@
 			<input #phone class="form" type="phone" formControlName="phone">
 		</p>
 		
-		<p i18n="orderComments|order form comments@@orderComments">{{ 'ORDER_FORM.COMMENTS' | translate }}</p>
+		<p>{{ 'ORDER_FORM.COMMENTS' | translate }}</p>
 		<p>
 			<textarea formControlName="comments" ></textarea>
 		</p>
 	</div>
-	<input type="submit" class="place-order" value="{{ 'ORDER_FORM.PLACE_ORDER' | translate }}"/>
+	<input type="submit" class="place-order" value="{{ 'ORDER_FORM.PLACE_ORDER' | translate }}" (click)="onSubmit()"/>
 </form>

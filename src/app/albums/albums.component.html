@@ -1,1 +1,7 @@
-<h1 class="intro">COMING SOON!</h1>
+<ul>
+	<li *ngFor="let album of albums" [@fadeInOut]><a routerLink="/albums/{{album.identity | json | btoa}}" [ngStyle]="{'background': 'url(' + album.properties.thumbnail + ') center'}"></a></li>
+	<li *ngFor="let album of albums" [@fadeInOut]><a routerLink="/albums/{{album.identity | json | btoa}}" [ngStyle]="{'background': 'url(' + album.properties.thumbnail + ') center'}"></a></li>
+	<li *ngFor="let album of albums" [@fadeInOut]><a routerLink="/albums/{{album.identity | json | btoa}}" [ngStyle]="{'background': 'url(' + album.properties.thumbnail + ') center'}"></a></li>
+	<li *ngFor="let album of albums" [@fadeInOut]><a routerLink="/albums/{{album.identity | json | btoa}}" [ngStyle]="{'background': 'url(' + album.properties.thumbnail + ') center'}"></a></li>
+	<li *ngFor="let album of albums" [@fadeInOut]><a routerLink="/albums/{{album.identity | json | btoa}}" [ngStyle]="{'background': 'url(' + album.properties.thumbnail + ') center'}"></a></li>
+</ul>

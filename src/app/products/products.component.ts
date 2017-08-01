@@ -4,13 +4,13 @@ import { AlertComponent } from '../alert/alert.component';
 import { OrderFormComponent } from '../order-form/order-form.component';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Router }  from '@angular/router';
-import * as AWS from 'aws-sdk';
+import { AwsService } from "app/service/aws.service";
+declare var jquery:any;
+declare var $ :any;
 
 @Component({
 	templateUrl: './products.component.html',
-	providers: [
-		AlertComponent
-	],
+	providers: [],
 	styleUrls: ['./products.component.css'],
 	animations: [
 		trigger('fadeInOut', [
@@ -44,55 +44,47 @@ export class ProductsComponent implements OnInit, OnDestroy {
 	}
 	
 	alertMessage = '';
-	lambda: any = null;
-	sns: any = null;
 	selectedPackage: Package = null;
 	formVisible: boolean = false;
 	orderSentVisible: boolean = false;
 	placeOrderStatus: string;
 	onLangChangeSubscription: any;
 	
-	constructor(private router: Router, private translate: TranslateService) {
+	constructor(private router: Router, private translate: TranslateService, private awsService: AwsService) {
 	}
 
-
-
 	ngOnInit() {
-		AWS.config.update({region: 'eu-west-1'});
-		AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'eu-west-1:48a38394-ff07-4e72-b1e4-f930eda2708e'});
-		this.lambda = new AWS.Lambda();
-		this.sns = new AWS.SNS();
 		this.updateProducts();
 
 		let self = this;
 		this.translate.get('PRODUCTS.COMPONENT.SENDING_DATA').subscribe((res: string) => {
 			self.placeOrderStatus = res;
 		});
-		console.log('subscribed');
 		this.onLangChangeSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
 			if(this.router.url !== '/products'){
 				return;
 			}
 			self.updateProducts();
 		});
+		$(() => {
+			$('body').vegas('options', 'delay', 60000);
+		})
 	}
 
 	ngOnDestroy(): void {
-		console.log('UNsubscribed');
 		this.onLangChangeSubscription.unsubscribe();
 	}
 
 	updateProducts() {
 		let self = this;
-		this.lambda.invoke({
-			FunctionName: "products",
-			Payload: JSON.stringify({locale: this.translate.currentLang})
-		}, (err, data) => {
-			self.packages = JSON.parse(data.Payload).packages;
+		this.awsService.getProducts(this.translate.currentLang)
+		.then( packages => {
+			self.packages = packages;
 		});
 	}
 	
 	onEvent(event: any){
+		console.log(event);
 		switch(event.type){
 			case 'SHOW_FORM':
 				this.packages.forEach(pack => {
@@ -122,22 +114,18 @@ export class ProductsComponent implements OnInit, OnDestroy {
 				var self = this;
 
 				this.orderSentVisible = true;
-				this.sns.publish({
-					Message: JSON.stringify(payload, null, 2),
-					Subject:"Message from www.TataFoto.de",
-					TargetArn: 'arn:aws:sns:eu-west-1:596757887524:www-tatafoto-de'
-				}, function (err, data) {
-					if (err) {
-						console.log(err.stack);
-						self.translate.get('PRODUCTS.COMPONENT.SENDING_DATA_FAILED').subscribe((res: string) => {
-							self.placeOrderStatus = res;
-						});
-					} else {
-						self.translate.get('PRODUCTS.COMPONENT.SENDING_DATA_SUCCEED').subscribe((res: string) => {
-							self.placeOrderStatus = res;
-						});
-					}
-
+				console.log('send notification');
+				this.awsService.sendNotification(JSON.stringify(payload, null, 2), 'Message from www.TataFoto.de')
+				.then(data => {
+					self.translate.get('PRODUCTS.COMPONENT.SENDING_DATA_SUCCEED').subscribe((res: string) => {
+						self.placeOrderStatus = res;
+					});
+				}, error => {
+					self.translate.get('PRODUCTS.COMPONENT.SENDING_DATA_FAILED').subscribe((res: string) => {
+						self.placeOrderStatus = res;
+					});
+				}).catch(err => {
+					console.log(err);
 				});
 				break;
 		}
