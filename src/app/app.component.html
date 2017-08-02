@@ -1,15 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="width:100%; height:100vh; display:block;" (mousemove)="onEvent($event)" (click)="onEvent($event)">
 	<div *ngIf="['/', '/products', '/albums'].indexOf(url) >= 0" style="display:block; width:400px; float:left;">
-		<nav class="lang" *ngIf="headVisible || url !== '/'" [@fadeInOut]><a href="#" (click)="onLangChange('ru')">RU</a>|<a href="#" (click)="onLangChange('de')">DE</a>|<a href="#" (click)="onLangChange('en')">EN</a></nav>
-		<app-head [visible]="headVisible || url !== '/'"></app-head><br/><br/>
+		<nav class="lang" *ngIf="visible || url !== '/'" [@fadeInOut]><a href="#" (click)="onLangChange('ru')">RU</a>|<a href="#" (click)="onLangChange('de')">DE</a>|<a href="#" (click)="onLangChange('en')">EN</a></nav>
+		<app-head [visible]="visible || url !== '/'"></app-head><br/><br/>
 		<nav>
-			<a href="http://vk.com/foto.berlin" class="link" target="_blank"><img src="assets/images/vk_icon.png" *ngIf="headVisible || url !== '/'" [@fadeInOut]></a>
-			<a href="https://www.facebook.com/profile.php?id=100002674856441" class="link" target="_blank"><img src="assets/images/fb_icon.png" *ngIf="headVisible || url !== '/'" [@fadeInOut]></a>
-			<a routerLink="/" routerLinkActive="active" class="link" *ngIf="url === '/products'"><img src="assets/images/euro_icon.png" *ngIf="headVisible || url !== '/'" [@fadeInOut]></a>
-			<a routerLink="/products" routerLinkActive="" class="link" *ngIf="url !== '/products'"><img src="assets/images/euro_icon.png" *ngIf="headVisible || url !== '/'" [@fadeInOut]></a>
-			<a routerLink="/" routerLinkActive="active" class="link" *ngIf="url === '/albums'"><img src="assets/images/catalog_icon.png" *ngIf="headVisible || url !== '/'" [@fadeInOut]></a>
-			<a routerLink="/albums" routerLinkActive="" class="link" *ngIf="url !== '/albums'"><img src="assets/images/catalog_icon.png" *ngIf="headVisible || url !== '/'" [@fadeInOut]></a>
+			<a href="http://vk.com/foto.berlin" class="link" target="_blank"><img src="assets/images/vk_icon.png" *ngIf="visible || url !== '/'" [@fadeInOut]></a>
+			<a href="https://www.facebook.com/profile.php?id=100002674856441" class="link" target="_blank"><img src="assets/images/fb_icon.png" *ngIf="visible || url !== '/'" [@fadeInOut]></a>
+			<a routerLink="/" routerLinkActive="active" class="link" *ngIf="url === '/products'"><img src="assets/images/euro_icon.png" *ngIf="visible || url !== '/'" [@fadeInOut]></a>
+			<a routerLink="/products" routerLinkActive="" class="link" *ngIf="url !== '/products'"><img src="assets/images/euro_icon.png" *ngIf="visible || url !== '/'" [@fadeInOut]></a>
+			<a routerLink="/" routerLinkActive="active" class="link" *ngIf="url === '/albums'"><img src="assets/images/catalog_icon.png" *ngIf="visible || url !== '/'" [@fadeInOut]></a>
+			<a routerLink="/albums" routerLinkActive="" class="link" *ngIf="url !== '/albums'"><img src="assets/images/catalog_icon.png" *ngIf="visible || url !== '/'" [@fadeInOut]></a>
 		</nav>
 	</div>
 	<div style="display:block; float:left;">

@@ -12,6 +12,8 @@ import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AwsService } from './service/aws.service';
+import { AlbumComponent } from "app/albums/album/album.component";
+import { HideableComponent } from "app/component/hideable.component";
 
 export function createTranslateLoader(http: HttpClient) {
     //return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -21,7 +23,9 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    HeadComponent
+    HeadComponent,
+    AlbumComponent,
+    HideableComponent
   ],
   imports: [
 		AppRoutingModule,

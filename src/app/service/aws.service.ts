@@ -1,3 +1,5 @@
+/// <reference types="aws-sdk" /> 
+
 import { Injectable } from '@angular/core';
 import * as AWS from 'aws-sdk';
 import { Album } from "app/model/Album";
@@ -52,13 +54,16 @@ export class AwsService {
 		return new Promise((resolve, reject) => {
 			self.lambda.invoke({
 				FunctionName: "api-album:PROD",
-				Payload: JSON.stringify({method: "LIST"})
+				Payload: JSON.stringify({
+					method: "GET",
+					id:id
+				})
 			}, (err, data) => {
 				if(err){
 					console.log('getAlbums error:', err.stack);
 					return reject(err);
 				}
-				resolve(JSON.parse(data.Payload)[0]);
+				resolve(JSON.parse(data.Payload));
 			});
 		});
 	}

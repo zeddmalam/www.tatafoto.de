@@ -5,8 +5,6 @@ import { OrderFormComponent } from '../order-form/order-form.component';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Router }  from '@angular/router';
 import { AwsService } from "app/service/aws.service";
-declare var jquery:any;
-declare var $ :any;
 
 @Component({
 	templateUrl: './products.component.html',
@@ -66,9 +64,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
 			}
 			self.updateProducts();
 		});
-		$(() => {
-			$('body').vegas('options', 'delay', 60000);
-		})
 	}
 
 	ngOnDestroy(): void {

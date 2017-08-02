@@ -4,8 +4,9 @@ import { AwsService } from "app/service/aws.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
-declare var jquery:any;
-declare var $ :any;
+import { HideableComponent } from "app/component/hideable.component";
+declare var jquery: any;
+declare var $: any;
 
 export enum KEY_CODE {
   RIGHT_ARROW = 39,
@@ -17,32 +18,34 @@ export enum KEY_CODE {
   selector: 'app-album',
   templateUrl: './album.component.html',
   styleUrls: ['./album.component.css'],
-	animations: [
-		trigger('fadeInOut', [
-			transition(':enter', [
-				style({opacity:0}),
-				animate(200, style({opacity:1})) 
-			]),
-			transition(':leave', [
-				animate(200, style({opacity:0})) 
-			])
-		]),
-		trigger('fadeInOut2', [
-			transition(':enter', [
-				style({opacity:0}),
-				animate(250, style({opacity:1})) 
-			]),
-			transition(':leave', [
-				animate(0, style({opacity:0, width:0})) 
-			])
-		])
-	]
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate(200, style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate(200, style({ opacity: 0 }))
+      ])
+    ]),
+    trigger('fadeInOut2', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate(250, style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate(0, style({ opacity: 0, width: 0 }))
+      ])
+    ])
+  ]
 })
-export class AlbumComponent implements OnInit {
+export class AlbumComponent extends HideableComponent implements OnInit {
 
   @Input('album') album;
 
-  constructor(private route: ActivatedRoute, private location: Location, private awsService: AwsService) { }
+  constructor(private route: ActivatedRoute, private location: Location, private awsService: AwsService) { 
+    super();
+  }
 
   ngOnInit() {
     this.route.paramMap
@@ -51,9 +54,9 @@ export class AlbumComponent implements OnInit {
       })
       .subscribe(album => {
         this.album = album;
-        
+
         let slides = [];
-        this.album.properties.photos.forEach(photo => slides.push({src:photo}));
+        this.album.properties.photos.forEach(photo => slides.push({ src: photo }));
 
         $(() => {
           $('body').vegas('destroy');
@@ -62,8 +65,9 @@ export class AlbumComponent implements OnInit {
             animation: 'random',
             delay: 10000
           })
-    		})
+        })
       });
+		super.ngOnInit();
   }
 
   goBack(): void {
@@ -76,18 +80,18 @@ export class AlbumComponent implements OnInit {
     this.location.back();
   }
 
-  prev(){
+  prev() {
     $('body').vegas('previous');
   }
 
-  next(){
+  next() {
     $('body').vegas('next');
   }
 
-  @HostListener('window:keyup', ['$event']) 
- keyEvent(event: KeyboardEvent) {
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
     console.log(event);
-    
+
     if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
       this.next();
     } else if (event.keyCode === KEY_CODE.LEFT_ARROW) {

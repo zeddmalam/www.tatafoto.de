@@ -7,7 +7,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { createTranslateLoader } from "app/app.module";
-import { Btoa } from "app/pipe/btoa.pipe";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
@@ -27,8 +26,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
   ],
   declarations: [
     AlbumsComponent, 
-    AlbumComponent,
-    Btoa
   ],
   bootstrap: [AlbumsComponent]
 })
