@@ -24,7 +24,7 @@ div.intro{
 	border-radius: 8px;
 	list-style-type: none;
 	width:270px;
-	height:375px;
+	height:444px;
 	background-color:#fff;
 	margin:0 10px 10px 0;
 	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
@@ -42,17 +42,18 @@ div.intro{
 @media screen and (max-width:1023px) { 
 	.packages li.order-form{
 		width: calc(100vw - 50px);
+		height:475px;
 	}
 }
 @media screen and (min-width:1024px) { 
 	.packages li.order-form{
 		width: 660px;
+	    height: 449px;
 	}
 }
 
 .packages li.order-form{
 	padding: 10px 15px 15px 15px;
-    height: 449px;
 }
 
 .order-form-body{
