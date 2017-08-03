@@ -18,7 +18,7 @@ export class HideableComponent{
 
 	@HostListener('document:click', ['$event'])
 	@HostListener('document:mousemove', ['$event'])
-	onEvent(event) {
+	onAutohideEvent(event) {
 		event.preventDefault();
 		this.updateAutoHide()
 	}
@@ -36,6 +36,10 @@ export class HideableComponent{
 
 		let self = this;
 		this.timerId = setTimeout(() => {
+			if (self.disableAutohide) {
+				self.visible = true;
+				return;
+			}
 			self.visible = false;
 		}, this.timerDuration);
 

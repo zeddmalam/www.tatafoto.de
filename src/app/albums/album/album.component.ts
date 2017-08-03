@@ -5,6 +5,8 @@ import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 import { HideableComponent } from "app/component/hideable.component";
+import { OrderFormComponent } from 'app/order-form/order-form.component';
+import { TranslateService } from "@ngx-translate/core";
 declare var jquery: any;
 declare var $: any;
 
@@ -42,12 +44,20 @@ export enum KEY_CODE {
 export class AlbumComponent extends HideableComponent implements OnInit {
 
   @Input('album') album;
+  formVisible: boolean = false;
+  orderSentVisible: boolean = false;
+  placeOrderStatus: string = '';
 
-  constructor(private route: ActivatedRoute, private location: Location, private awsService: AwsService) { 
+  constructor(private route: ActivatedRoute, private awsService: AwsService, private translate: TranslateService, private location: Location) { 
     super();
   }
 
   ngOnInit() {
+    super.ngOnInit();
+    //this.disableAutohide = true;
+
+    this.translate.get('PRODUCTS.COMPONENT.SENDING_DATA').subscribe((res: string) => this.placeOrderStatus = res);
+
     this.route.paramMap
       .switchMap((params: ParamMap) => {
         return this.awsService.getAlbum(params.get('id'));
@@ -59,7 +69,7 @@ export class AlbumComponent extends HideableComponent implements OnInit {
         this.album.properties.photos.forEach(photo => slides.push({ src: photo }));
 
         $(() => {
-          $('body').vegas('destroy');
+          try{$('body').vegas('destroy');}catch(ex){}
           $('body').vegas({
             slides: slides,
             animation: 'random',
@@ -67,11 +77,10 @@ export class AlbumComponent extends HideableComponent implements OnInit {
           })
         })
       });
-		super.ngOnInit();
   }
 
   goBack(): void {
-    $('body').vegas('destroy');
+    try{$('body').vegas('destroy');}catch(ex){}
     $('body').vegas({
       slides: this.awsService.getGlobalSlides(),
       animation: 'random',
@@ -100,4 +109,42 @@ export class AlbumComponent extends HideableComponent implements OnInit {
       this.goBack();
     }
   }
+
+  onEvent(event: any){
+		console.log(event);
+		switch(event.type){
+			case 'SHOW_FORM':
+				this.formVisible = true;
+				break;
+			case 'CANCEL_FORM':
+				this.formVisible = false;
+				break;
+			case 'SUBMIT_ORDER_FORM':
+				this.formVisible = false;
+				var payload = {
+					default:{
+            url: this.location.path(),
+            event: event
+					}
+				}
+				
+				var self = this;
+
+				this.orderSentVisible = true;
+				console.log('send notification');
+				this.awsService.sendNotification(JSON.stringify(payload, null, 2), 'Message from www.TataFoto.de')
+				.then(data => {
+					self.translate.get('PRODUCTS.COMPONENT.SENDING_DATA_SUCCEED').subscribe((res: string) => {
+						self.placeOrderStatus = res;
+					});
+				}, error => {
+					self.translate.get('PRODUCTS.COMPONENT.SENDING_DATA_FAILED').subscribe((res: string) => {
+						self.placeOrderStatus = res;
+					});
+				}).catch(err => {
+					console.log(err);
+				});
+				break;
+		}
+	}
 }

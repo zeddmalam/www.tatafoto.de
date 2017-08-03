@@ -1,11 +1,8 @@
-/// <reference types="aws-sdk" /> 
-
 import { Component, style, state, animate, transition, trigger, OnDestroy } from '@angular/core';
 import { HeadComponent } from './head/head.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import * as moment from 'moment';
 import { AwsService } from "app/service/aws.service";
 import { HideableComponent } from "app/component/hideable.component";
 declare var jquery: any;
@@ -55,7 +52,7 @@ export class AppComponent extends HideableComponent implements OnDestroy {
 					$(() => {
 						$('body').vegas('options', 'delay', 10000).vegas('next');
 					})
-				} else if(/^\/albums\/\n+$/.test(this.router.url)) {
+				} else if(/^\/albums\/\d+$/.test(this.router.url)) {
 				} else {
 					$(() => {
 						$('body').vegas('options', 'delay', 60000).vegas('next');

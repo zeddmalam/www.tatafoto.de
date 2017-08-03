@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import {Package} from '../../model/Package';
+import { Package } from 'app/model/Package';
 
 @Component({
   selector: 'app-product',
@@ -8,8 +8,8 @@ import {Package} from '../../model/Package';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-	@Input('package') package: Package;
-	@Output('emitter') emitter:EventEmitter<any> = new EventEmitter<any>();
+	@Input('package') public package: Package;
+	@Output('emitter') public emitter:EventEmitter<any> = new EventEmitter<any>();
 	
 	additionalPrice = 0;
 	formVisible = false;

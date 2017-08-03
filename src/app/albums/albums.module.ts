@@ -8,14 +8,13 @@ import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { createTranslateLoader } from "app/app.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { SharedModule } from "app/module/shared.module";
 
 @NgModule({
   imports: [
+    SharedModule,
     AlbumsRoutingModule,
     CommonModule,
-		BrowserModule,
-		BrowserAnimationsModule,
-    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -25,7 +24,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     })
   ],
   declarations: [
-    AlbumsComponent, 
+    AlbumsComponent,
+    AlbumComponent
   ],
   bootstrap: [AlbumsComponent]
 })

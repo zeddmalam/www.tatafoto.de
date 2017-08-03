@@ -19,6 +19,9 @@
 		<script src="assets/js/vegas/vegas.min.js"></script>
 		<script type="text/javascript">
 			$(() => {
+				if(/^\/albums\/\d+$/.test(location.pathname)){
+					return;
+				}
 				$('body').vegas({
 					slides: [
 						{ src: 'assets/images/IMG_2499_moz3.jpg' },
@@ -57,6 +60,7 @@
 			ga('create', 'UA-69924065-2', 'auto');
 			ga('send', 'pageview');
 		</script>
+		<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59825b2be5e40d61"></script> 
 	</body>
 
 </html>

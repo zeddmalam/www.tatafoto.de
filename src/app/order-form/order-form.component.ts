@@ -10,10 +10,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class OrderFormComponent implements OnInit {
 	@Output('emitter') emitter: EventEmitter<any> = new EventEmitter<any>();
-	form: OrderForm = new OrderForm();
-
-	@ViewChild('email') email: ElementRef;
-	@ViewChild('phone') phone: ElementRef;
+	@ViewChild('email') emailRef: ElementRef;
+	@ViewChild('phone') phoneRef: ElementRef;
 
 	orderFormGroup: FormGroup;
 
@@ -34,20 +32,21 @@ export class OrderFormComponent implements OnInit {
 
 	onSubmit() {
 		if (this.orderFormGroup.valid) {
+			let form: OrderForm = this.orderFormGroup.value;
 			return this.emitter.emit({
 				type: 'SUBMIT_ORDER_FORM',
-				form: this.form
+				form: form 
 			});
 		}
 
 		if (this.orderFormGroup.controls.email.invalid) {
 			this.orderFormGroup.controls.email.markAsTouched();
-			return this.renderer.invokeElementMethod(this.email.nativeElement, 'focus');
+			return this.renderer.invokeElementMethod(this.emailRef.nativeElement, 'focus');
 		}
 
 		if (this.orderFormGroup.controls.phone.invalid) {
 			this.orderFormGroup.controls.phone.markAsTouched();
-			return this.renderer.invokeElementMethod(this.phone.nativeElement, 'focus');
+			return this.renderer.invokeElementMethod(this.phoneRef.nativeElement, 'focus');
 		}
 	}
 }

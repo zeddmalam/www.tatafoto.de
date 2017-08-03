@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, Input, style, state, animate, transition, trigger, Output, EventEmitter } from '@angular/core';
 import { Package }  from '../model/Package';
 import { AlertComponent } from '../alert/alert.component';
-import { OrderFormComponent } from '../order-form/order-form.component';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Router }  from '@angular/router';
 import { AwsService } from "app/service/aws.service";

@@ -48,4 +48,81 @@ div.thumbnail:hover{
 	margin: 24px;
 	position:absolute;
 	bottom: 0;
+	left: 0;
+}
+
+button{
+	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+	color: #fff;
+	font-size:22px;
+	font-weight: 900;
+	padding: 12px;
+	margin: 6px 0 15px 0;
+	background-color: #3b5998;
+	border-radius: 8px;
+	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	text-align: center;
+	border: 0;
+	cursor: pointer;
+}
+
+button:hover{
+	-webkit-box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+}
+
+.order-form
+{
+	display:inline-flex;
+	padding: 15px;
+	border-radius: 8px;
+	list-style-type: none;
+	width:709px;
+	height:449px;
+	background-color:#fff;
+	margin:0 10px 10px 0;
+	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+	opacity: 0.9;
+	position:absolute;
+	top:0;
+	right:0;
+}
+
+.order-form:hover{
+	opacity:1;
+}
+
+.place-order{
+	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+	color: #fff;
+	font-size:22px;
+	font-weight: 900;
+	padding: 12px;
+	margin: 25px 0 15px 0;
+	background-color: #3b5998;
+	border-radius: 8px;
+	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
+	text-align: center;
+	border: 0;
+	cursor: pointer;
+	height:50px;
+	text-decoration: none;
+}
+
+.place-order:hover{
+	-webkit-box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
+}
+
+.order-form-body{
+	height:392px;
 }

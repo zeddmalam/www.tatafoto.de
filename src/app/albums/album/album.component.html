@@ -1,14 +1,17 @@
-<div class="thumbnail" *ngIf="album && visible" [ngStyle]="{'background': 'url(' + album.properties.thumbnail + ') center'}" [@fadeInOut]>
+<div class="thumbnail" *ngIf="album && (visible || formVisible || orderSentVisible)" [ngStyle]="{'background': 'url(' + album.properties.thumbnail + ') center'}" [@fadeInOut]>
 	<a class="link" (click)="goBack()" href="javascript:;"><div>&#8682;</div></a>
 </div>
-<span *ngIf="visible">
-	<a href="javascript:;">I WANT SIMILAR!</a>
-	<a href="javascript:;">SHARE</a>
-	<a href="javascript:;">LIKE</a>
-	<a href="javascript:;">SOMETHING ELSE</a>
-	
-</span>
-<span *ngIf="visible" class="navigation">
+<div *ngIf="formVisible !== false" class="order-form" [@fadeInOut2]><app-order-form style="width:100%;" (emitter)="onEvent($event)"></app-order-form></div>
+<div *ngIf="orderSentVisible" class="order-form" [@fadeInOut2]>
+	<div>
+		<div class="order-form-body">
+			<p>{{placeOrderStatus}}</p>
+		</div>
+		<a (click)="formVisible = false; orderSentVisible = false" class="place-order">{{ 'PRODUCTS.CLOSE' | translate }}</a>
+	</div>
+</div>
+<span *ngIf="visible || formVisible || orderSentVisible" class="navigation">
 	<a class="link" (click)="prev()" href="javascript:;"><div> &#8678;</div></a>
 	<a class="link" (click)="next()" href="javascript:;"><div> &#8680;</div></a>
+	<button (click)="formVisible = !formVisible">I WANT SIMILAR!</button>
 </span>
