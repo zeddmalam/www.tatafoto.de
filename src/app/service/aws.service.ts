@@ -9,10 +9,12 @@ export class AwsService {
 	lambda: any = null;
 	sns: any = null;
 	snsTargetArn: string = 'arn:aws:sns:eu-west-1:596757887524:www-tatafoto-de';
+	identityPoolId: string = 'eu-west-1:48a38394-ff07-4e72-b1e4-f930eda2708e';
+	env: string = 'PROD';
 
 	constructor() {
 		AWS.config.update({region: 'eu-west-1'});
-		AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'eu-west-1:48a38394-ff07-4e72-b1e4-f930eda2708e'});
+		AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: this.identityPoolId});
 		this.lambda = new AWS.Lambda();
 		this.sns = new AWS.SNS();
 	}
@@ -21,7 +23,7 @@ export class AwsService {
 		let self = this;
 		return new Promise((resolve, reject) => {
 			self.lambda.invoke({
-				FunctionName: "products:PROD",
+				FunctionName: 'products:' + self.env,
 				Payload: JSON.stringify({locale: locale})
 			}, (err, data) => {
 				if(err){
@@ -37,7 +39,7 @@ export class AwsService {
 		let self = this;
 		return new Promise((resolve, reject) => {
 			self.lambda.invoke({
-				FunctionName: "api-album:PROD",
+				FunctionName: 'api-album:' + self.env,
 				Payload: JSON.stringify({method: "LIST"})
 			}, (err, data) => {
 				if(err){
@@ -53,7 +55,7 @@ export class AwsService {
 		let self = this;
 		return new Promise((resolve, reject) => {
 			self.lambda.invoke({
-				FunctionName: "api-album:PROD",
+				FunctionName: 'api-album:PROD' + self.env,
 				Payload: JSON.stringify({
 					method: "GET",
 					id:id
