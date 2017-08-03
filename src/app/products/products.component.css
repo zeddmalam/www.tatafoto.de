@@ -1,5 +1,5 @@
 div.intro{
-	margin: 25px 0px 0 0;
+	margin: 25px 10px 10px 10px;
 	padding: 15px;
 	background-color:#fff;
 	border-radius: 8px;
@@ -8,12 +8,13 @@ div.intro{
 	box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
 	opacity: 0.9;
-	max-width: 962px;
+	min-width: 270px;
 }
 
 .packages{
-	margin: 25px 0 0 0;
+	margin: 25px 0px 10px 10px;
 	padding: 0;
+	text-align: center;
 }
 
 .packages li
@@ -22,8 +23,8 @@ div.intro{
 	padding: 15px;
 	border-radius: 8px;
 	list-style-type: none;
-	width:209px;
-	height:444px;
+	width:270px;
+	height:375px;
 	background-color:#fff;
 	margin:0 10px 10px 0;
 	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
@@ -31,14 +32,25 @@ div.intro{
 	box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
 	opacity: 0.9;
+	text-align: left;
 }
 
 .packages li:hover{
 	opacity:1;
 }
 
+@media screen and (max-width:1023px) { 
+	.packages li.order-form{
+		width: calc(100vw - 50px);
+	}
+}
+@media screen and (min-width:1024px) { 
+	.packages li.order-form{
+		width: 660px;
+	}
+}
+
 .packages li.order-form{
-	width:709px;
 	padding: 10px 15px 15px 15px;
     height: 449px;
 }
