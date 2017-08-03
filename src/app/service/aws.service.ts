@@ -55,7 +55,7 @@ export class AwsService {
 		let self = this;
 		return new Promise((resolve, reject) => {
 			self.lambda.invoke({
-				FunctionName: 'api-album:PROD' + self.env,
+				FunctionName: 'api-album:' + self.env,
 				Payload: JSON.stringify({
 					method: "GET",
 					id:id
