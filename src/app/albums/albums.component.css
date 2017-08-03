@@ -1,15 +1,22 @@
 li{
 	display:inline-flex;
-	padding: 15px;
+	padding: 0 10px 10px 0;
 	list-style-type: none;
 }
 
 ul{
-	max-width: 962px;
+    text-align: center;
+    padding: 0;
+	margin: 10px 0 0 10px;
+}
+
+@media screen and (min-width:1024px) { 
+	a{
+		margin: 10px;
+	}
 }
 
 a{
-	margin: 25px 0px 0 0;
 	border-radius: 150px;
 	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
 	-moz-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);

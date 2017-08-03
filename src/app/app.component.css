@@ -35,6 +35,8 @@
 	box-shadow: 1px 1px 18px rgba(0,0,0,0.75);
 }
 
+
+
 nav.lang{
 	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
 	font-size: 24px;
@@ -55,6 +57,9 @@ nav.lang > a{
 	div.header{
 		margin: 0 auto;
 	}
+	div.content{
+		margin: 0 auto;
+	}
 }
 @media screen and (min-width:1440px) { 
 	div.header{
@@ -62,6 +67,7 @@ nav.lang > a{
 	}
 	div.content{
 		width: calc(100vw - 310px);
+		float:right;
 	}
 }
 div.header{
@@ -72,5 +78,4 @@ div.header{
 
 div.content{
 	display:block;
-	float:right;
 }

@@ -1,5 +1,31 @@
+@media screen and (max-width:767px) { 
+	div.thumbnail{
+		margin: 25px auto;
+	}
+	.navigation{
+		margin: 10px;
+		width: 310px;
+	}
+	button{
+		margin: 10px 0 0 0;
+		display: none;
+	}
+}
+@media screen and (min-width:768px) { 
+	div.thumbnail{
+		margin: 25px 0 0 25px;
+		position:absolute;
+		top:0px;
+		left:0px;
+	}
+	.navigation{
+		margin: 25px;
+	}
+	button{
+		margin: 6px 0 15px 0;
+	}
+}
 div.thumbnail{
-	margin: 25px;
 	border-radius: 150px;
 	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
 	-moz-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
@@ -45,7 +71,6 @@ div.thumbnail:hover{
 }
 
 .navigation{
-	margin: 24px;
 	position:absolute;
 	bottom: 0;
 	left: 0;
@@ -57,7 +82,6 @@ button{
 	font-size:22px;
 	font-weight: 900;
 	padding: 12px;
-	margin: 6px 0 15px 0;
 	background-color: #3b5998;
 	border-radius: 8px;
 	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
@@ -80,18 +104,15 @@ button:hover{
 	padding: 15px;
 	border-radius: 8px;
 	list-style-type: none;
-	width:709px;
+	width:545px;
 	height:449px;
 	background-color:#fff;
-	margin:0 10px 10px 0;
+	margin: 10px 10px 10px 130px;
 	-webkit-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
 	-moz-box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
 	box-shadow: 1px 1px 7px rgba(0,0,0,0.75);
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
 	opacity: 0.9;
-	position:absolute;
-	top:0;
-	right:0;
 }
 
 .order-form:hover{
