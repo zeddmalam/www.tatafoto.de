@@ -115,10 +115,6 @@ button:hover{
 	opacity: 0.9;
 }
 
-.order-form:hover{
-	opacity:1;
-}
-
 .place-order{
 	font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
 	color: #fff;

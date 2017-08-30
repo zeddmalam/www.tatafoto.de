@@ -1,5 +1,7 @@
-<div class="thumbnail" *ngIf="album && (visible || formVisible || orderSentVisible)" [ngStyle]="{'background': 'url(' + album.properties.thumbnail + ') center'}" [@fadeInOut]>
-	<a class="link" (click)="goBack()" href="javascript:;"><div>&#8682;</div></a>
+<div class="thumbnail" *ngIf="album && (visible || formVisible || orderSentVisible)" [ngStyle]="{'background': 'url(' + album.properties.thumbnail + ') center'}" [@fadeInOut] 
+	attr.data-url="{{absoluteUrl}}" 
+	attr.data-media="{{album.properties.photos[0]}}">
+	<a class="link" routerLink="/albums"><div>&#8682;</div></a>
 </div>
 <div *ngIf="formVisible !== false" class="order-form" [@fadeInOut2]><app-order-form style="width:100%;" (emitter)="onEvent($event)"></app-order-form></div>
 <div *ngIf="orderSentVisible" class="order-form" [@fadeInOut2]>

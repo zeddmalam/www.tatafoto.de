@@ -1,7 +1,3 @@
-<ul *ngIf="albums">
-	<li *ngFor="let album of albums" [@fadeInOut]><a routerLink="/albums/{{album.identity}}" [ngStyle]="{'background': 'url(' + album.properties.thumbnail + ') center'}"></a></li>
-	<li *ngFor="let album of albums" [@fadeInOut]><a routerLink="/albums/{{album.identity}}" [ngStyle]="{'background': 'url(' + album.properties.thumbnail + ') center'}"></a></li>
-	<li *ngFor="let album of albums" [@fadeInOut]><a routerLink="/albums/{{album.identity}}" [ngStyle]="{'background': 'url(' + album.properties.thumbnail + ') center'}"></a></li>
-	<li *ngFor="let album of albums" [@fadeInOut]><a routerLink="/albums/{{album.identity}}" [ngStyle]="{'background': 'url(' + album.properties.thumbnail + ') center'}"></a></li>
+<ul *ngIf="albums && albums.length">
 	<li *ngFor="let album of albums" [@fadeInOut]><a routerLink="/albums/{{album.identity}}" [ngStyle]="{'background': 'url(' + album.properties.thumbnail + ') center'}"></a></li>
 </ul>

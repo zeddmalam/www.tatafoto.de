@@ -47,9 +47,11 @@ export class AlbumComponent extends HideableComponent implements OnInit {
   formVisible: boolean = false;
   orderSentVisible: boolean = false;
   placeOrderStatus: string = '';
+  absoluteUrl: string = '';
 
   constructor(private route: ActivatedRoute, private awsService: AwsService, private translate: TranslateService, private location: Location) { 
     super();
+    this.absoluteUrl = location.prepareExternalUrl(location.path());
   }
 
   ngOnInit() {
